@@ -1,5 +1,24 @@
 @extends('Admin.layout')
 
+@section('script-head')
+    <!-- TinyMCE -->
+    <script
+        src="https://cdn.tiny.cloud/1/l7yu4rb40s4hp816fx4stqohhp6fxpn2x64s83wjsjo3t668/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#blog_content',
+            plugins: [
+                'advlist', 'advcode', 'advtable', 'autolink', 'checklist',
+                'lists', 'link', 'image', 'charmap', 'anchor', 'searchreplace',
+                'powerpaste', 'formatpainter', 'media', 'table', 'code'
+            ],
+            toolbar: 'undo redo | a11ycheck casechange blocks bold italic backcolor | alignleft aligncenter alignright alignjustify |' +
+                'bullist numlist checklist outdent indent | code table media'
+        })
+    </script>
+@endsection
+
 @section('title', 'Crear blog')
 
 @section('content')
@@ -11,13 +30,14 @@
                         <div class="spur-card-icon">
                             <i class="fas fa-chart-bar"></i>
                         </div>
-                        <div class="spur-card-title"> Crear Blog </div>
+                        <div class="spur-card-title"> Crear Blog</div>
                     </div>
                     <div class="card-body ">
                         <form>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <select class="form-control" name="category_id" id="category_id">
+                                    <select class="form-control" name="category_id"
+                                            id="category_id">
                                         <option value="">Categoria</option>
                                         <option value="">cat1</option>
                                         <option value="">cat2</option>
@@ -25,7 +45,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <select class="form-control" name="category_id" id="category_id">
+                                    <select class="form-control" name="category_id"
+                                            id="category_id">
                                         <option value="">Autor</option>
                                         <option value="">aut1</option>
                                         <option value="">aut2</option>
@@ -35,7 +56,8 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="inputTitle" placeholder="Titulo">
+                                    <input type="text" class="form-control" id="inputTitle"
+                                           placeholder="Titulo">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <input type="file" class="form-control" id="inputImage">
@@ -43,7 +65,8 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <textarea name="blog_content" id="blog_content" cols="110" rows="10"></textarea>
+                                    <textarea name="blog_content" id="blog_content" cols="110"
+                                              rows="10"></textarea>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Crear</button>
@@ -53,4 +76,6 @@
             </div>
         </div>
     </div>
+
 @endsection
+
