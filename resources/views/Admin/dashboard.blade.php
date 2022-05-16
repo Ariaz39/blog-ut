@@ -38,13 +38,13 @@
             </div>
             <div class="col-xl-4">
                 <div class="stats stats-danger">
-                    <h3 class="stats-title"> Recientes </h3>
+                    <h3 class="stats-title"> Categorias </h3>
                     <div class="stats-content">
                         <div class="stats-icon">
                             <i class="fas fa-clock"></i>
                         </div>
                         <div class="stats-data">
-                            <div class="stats-number">5</div>
+                            <div class="stats-number">{{$categories}}</div>
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,8 @@ class CategoryController extends Controller
     public function index()
     {
         $data = Category::where('state', 1)->get()->toArray();
-        return view('Admin.categories', compact('data'));
+//        return view('Admin.categories', compact('data'));
+        return response($data, 200);
     }
 
     public function create()

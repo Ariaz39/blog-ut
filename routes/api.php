@@ -1,19 +1,34 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AutorController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+Route::get('/', function () {
+    return view('Admin.login');
+});
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'admin'], function ()
+{
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::group(['prefix' => 'category'], function ()
+    {
+        Route::get('/list-all', [CategoryController::class, 'index'])->name('categories');
+        Route::get('/create-category', [CategoryController::class, 'create'])->name('create-category');
+    });
+
+    Route::group(['prefix' => 'autor'], function ()
+    {
+        Route::get('/list-all', [AutorController::class, 'index'])->name('autors');
+        Route::get('/create-autor', [AutorController::class, 'create'])->name('create-autor');
+    });
+
+    Route::group(['prefix' => 'blog'], function ()
+    {
+        Route::get('/list-all', [BlogController::class, 'index'])->name('blogs');
+        Route::get('/create-blog', [BlogController::class, 'create'])->name('create-blog');
+    });
 });

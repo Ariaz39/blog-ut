@@ -11,7 +11,8 @@ class BlogController extends Controller
     public function index()
     {
         $data = Blog::where('state', 1)->get()->toArray();
-        return view('Admin.blogs', compact('data'));
+//        return view('Admin.blogs', compact('data'));
+        return response($data, 200);
     }
 
     public function create()

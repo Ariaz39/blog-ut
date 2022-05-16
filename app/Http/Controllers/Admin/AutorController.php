@@ -11,7 +11,8 @@ class AutorController extends Controller
     public function index()
     {
         $data = Autor::where('state', 1)->get()->toArray();
-        return view('Admin.autors', compact('data'));
+//        return view('Admin.autors', compact('data'));
+        return response($data, 200);
     }
 
     public function create()

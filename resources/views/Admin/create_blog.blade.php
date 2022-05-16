@@ -11,10 +11,10 @@
             plugins: [
                 'advlist', 'advcode', 'advtable', 'autolink', 'checklist',
                 'lists', 'link', 'image', 'charmap', 'anchor', 'searchreplace',
-                'powerpaste', 'formatpainter', 'media', 'table', 'code'
+                'powerpaste', 'formatpainter', 'media', 'table', 'code', 'quickbars', 'wordcount'
             ],
-            toolbar: 'undo redo | a11ycheck casechange blocks bold italic backcolor | alignleft aligncenter alignright alignjustify |' +
-                'bullist numlist checklist outdent indent | code table media'
+            toolbar: 'undo redo | code table image | a11ycheck casechange blocks bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify |' +
+                'bullist numlist checklist outdent indent'
         })
     </script>
 @endsection
@@ -33,10 +33,10 @@
                         <div class="spur-card-title"> Crear Blog</div>
                     </div>
                     <div class="card-body ">
-                        <form>
+                        <form action="">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <select class="form-control" name="category_id"
+                                    <select class="custom-select" name="category_id"
                                             id="category_id">
                                         <option value="">Categoria</option>
                                         <option value="">cat1</option>
@@ -45,7 +45,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <select class="form-control" name="category_id"
+                                    <select class="custom-select" name="category_id"
                                             id="category_id">
                                         <option value="">Autor</option>
                                         <option value="">aut1</option>
@@ -59,8 +59,9 @@
                                     <input type="text" class="form-control" id="inputTitle"
                                            placeholder="Titulo">
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <input type="file" class="form-control" id="inputImage">
+                                <div class="custom-file col-md-6">
+                                    <input type="file" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Seleccionar imagen</label>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -76,6 +77,8 @@
             </div>
         </div>
     </div>
+
+    <style>.custom-file-label::after {content: "Buscar"!important;}</style>
 
 @endsection
 

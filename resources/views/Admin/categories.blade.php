@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="card-body spur-card-body-chart">
-                        <table class="table table-hover table-in-card" class="table table-striped" id="list-all">
+                        <table class="table table-hover table-in-card" id="list-all">
                             <thead>
                             <tr>
                                 <th scope="col">ID</th>
