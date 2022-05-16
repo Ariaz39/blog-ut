@@ -13,7 +13,7 @@
                         </div>
                         <div class="spur-card-title"> Listado de categorias</div>
                         <div class="spur-card-menu">
-                            <a href="" class="btn btn-primary">Agregar categoria</a>
+                            <a href="{{route('create-category')}}" class="btn btn-primary">Agregar categoria</a>
                         </div>
                     </div>
                     <div class="card-body spur-card-body-chart">

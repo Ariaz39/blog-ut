@@ -13,7 +13,7 @@
                             <i class="fas fa-newspaper"></i>
                         </div>
                         <div class="stats-data">
-                            <div class="stats-number">114</div>
+                            <div class="stats-number">{{$blogs}}</div>
                         </div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                             <i class="fas fa-users"></i>
                         </div>
                         <div class="stats-data">
-                            <div class="stats-number">4</div>
+                            <div class="stats-number">{{$autors}}</div>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,23 @@
                             <i class="fas fa-list"></i>
                         </div>
                         <div class="spur-card-title"> Listado de blogs</div>
-
+                        <div class="spur-card-menu">
+                            <div class="dropdown show">
+                                <a class="btn btn-primary btn-sm mb-1" href="#" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <i class="fas fa-plus"></i></a>
+                                <div class="dropdown-menu dropdown-menu-right"
+                                     aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="{{route('create-blog')}}">Agregar
+                                        Blog</a>
+                                    <a class="dropdown-item" href="{{route('create-autor')}}">Agregar
+                                        Autor</a>
+                                    <a class="dropdown-item" href="{{route('create-category')}}">Agregar
+                                        Categoria</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body spur-card-body-chart">
                         <table class="table table-hover table-in-card">
@@ -78,9 +94,11 @@
                                     <td>{{$key['autor_id']}}</td>
                                     <td>{{$key['category_id']}}</td>
                                     <td>
-                                        <a href="#" type="submit" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
+                                        <a href="#" type="submit" class="btn btn-info btn-sm"><i
+                                                class="fa fa-edit"></i></a>
                                         <form class="d-inline" action="">
-                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                            <button type="submit" class="btn btn-danger btn-sm"><i
+                                                    class="fa fa-trash"></i></button>
                                         </form>
                                     </td>
                                 </tr>

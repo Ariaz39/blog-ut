@@ -13,7 +13,7 @@
                         </div>
                         <div class="spur-card-title"> Listado de blogs</div>
                         <div class="spur-card-menu">
-                            <a href="" class="btn btn-primary">Agregar blog</a>
+                            <a href="{{route('create-blog')}}" class="btn btn-primary">Agregar blog</a>
                         </div>
 
                     </div>

@@ -13,7 +13,7 @@
                         </div>
                         <div class="spur-card-title"> Listado de autores</div>
                         <div class="spur-card-menu">
-                            <a href="" class="btn btn-primary">Agregar autor</a>
+                            <a href="{{route('create-autor')}}" class="btn btn-primary">Agregar autor</a>
                         </div>
 
                     </div>
