@@ -1,5 +1,10 @@
 @extends('Admin.layout')
 
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css">
+@endsection
+
 @section('title', 'Categorias')
 
 @section('content')
@@ -17,7 +22,7 @@
                         </div>
                     </div>
                     <div class="card-body spur-card-body-chart">
-                        <table class="table table-hover table-in-card">
+                        <table class="table table-hover table-in-card" class="table table-striped" id="list-all">
                             <thead>
                             <tr>
                                 <th scope="col">ID</th>
@@ -47,4 +52,11 @@
 
         </div>
     </div>
+@endsection
+
+@section('script-footer')
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
+    <script src="{{asset('js/datatable.js')}}"></script>
 @endsection
