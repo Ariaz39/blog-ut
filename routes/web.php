@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +19,4 @@ Route::get('/', function () {
 });
 
 //Route::resource('/admin', CategoryController::class);
-Route::get('/admin', [CategoryController::class, 'index'])->name('dashboard');
+Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
