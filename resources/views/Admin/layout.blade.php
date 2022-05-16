@@ -28,24 +28,24 @@
                 <a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">
                     <i class="fas fa-chart-bar"></i> Autor </a>
                 <div class="dash-nav-dropdown-menu">
-                    <a href="#" class="dash-nav-dropdown-item">Listar</a>
-                    <a href="#" class="dash-nav-dropdown-item">Crear</a>
+                    <a href="{{route('autors')}}" class="dash-nav-dropdown-item">Listar</a>
+                    <a href="{{route('create-autor')}}" class="dash-nav-dropdown-item">Crear</a>
                 </div>
             </div>
             <div class="dash-nav-dropdown">
                 <a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">
                     <i class="fas fa-chart-bar"></i> Categorias </a>
                 <div class="dash-nav-dropdown-menu">
-                    <a href="#" class="dash-nav-dropdown-item">Listar</a>
-                    <a href="#" class="dash-nav-dropdown-item">Crear</a>
+                    <a href="{{route('categories')}}" class="dash-nav-dropdown-item">Listar</a>
+                    <a href="{{route('create-category')}}" class="dash-nav-dropdown-item">Crear</a>
                 </div>
             </div>
             <div class="dash-nav-dropdown">
                 <a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">
                     <i class="fas fa-chart-bar"></i> Blogs </a>
                 <div class="dash-nav-dropdown-menu">
-                    <a href="#" class="dash-nav-dropdown-item">Listar</a>
-                    <a href="#" class="dash-nav-dropdown-item">Crear</a>
+                    <a href="{{route('blogs')}}" class="dash-nav-dropdown-item">Listar</a>
+                    <a href="{{route('create-blog')}}" class="dash-nav-dropdown-item">Crear</a>
                 </div>
             </div>
 {{--            <div class="dash-nav-dropdown ">--}}

@@ -1,50 +1,9 @@
 @extends('Admin.layout')
 
-@section('title', 'Dashboard')
+@section('title', 'Blogs')
 
 @section('content')
     <div class="container-fluid">
-        <div class="row dash-row">
-            <div class="col-xl-4">
-                <div class="stats stats-primary">
-                    <h3 class="stats-title"> Blogs </h3>
-                    <div class="stats-content">
-                        <div class="stats-icon">
-                            <i class="fas fa-newspaper"></i>
-                        </div>
-                        <div class="stats-data">
-                            <div class="stats-number">114</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4">
-                <div class="stats stats-success ">
-                    <h3 class="stats-title"> Autores </h3>
-                    <div class="stats-content">
-                        <div class="stats-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="stats-data">
-                            <div class="stats-number">4</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4">
-                <div class="stats stats-danger">
-                    <h3 class="stats-title"> Recientes </h3>
-                    <div class="stats-content">
-                        <div class="stats-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="stats-data">
-                            <div class="stats-number">5</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col-xl-12">
                 <div class="card spur-card">
@@ -53,6 +12,9 @@
                             <i class="fas fa-list"></i>
                         </div>
                         <div class="spur-card-title"> Listado de blogs</div>
+                        <div class="spur-card-menu">
+                            <a href="" class="btn btn-primary">Agregar blog</a>
+                        </div>
 
                     </div>
                     <div class="card-body spur-card-body-chart">

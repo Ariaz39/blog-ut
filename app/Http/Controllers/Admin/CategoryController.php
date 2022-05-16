@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class CategoryController extends Controller
 {
     public function index()
     {
-        $data = Blog::where('state', 1)->get()->toArray();
-        return view('Admin.dashboard', compact('data'));
+        $data = Category::where('state', 1)->get()->toArray();
+        return view('Admin.categories', compact('data'));
     }
 
     public function create()
     {
-        //
+        return view('Admin.create_category');
     }
 
     public function store(Request $request)

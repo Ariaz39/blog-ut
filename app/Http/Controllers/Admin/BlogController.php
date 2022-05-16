@@ -6,17 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class BlogController extends Controller
 {
     public function index()
     {
         $data = Blog::where('state', 1)->get()->toArray();
-        return view('Admin.dashboard', compact('data'));
+        return view('Admin.blogs', compact('data'));
     }
 
     public function create()
     {
-        //
+        return view('Admin.create_blog');
     }
 
     public function store(Request $request)
