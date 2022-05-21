@@ -23,7 +23,7 @@
 
                     </div>
                     <div class="card-body spur-card-body-chart">
-                        <table class="table table-hover table-in-card" class="table table-striped" id="list-all">
+                        <table class="table table-hover table-in-card" id="list-all">
                             <thead>
                             <tr>
                                 <th scope="col">ID</th>
@@ -31,25 +31,13 @@
                                 <th scope="col">Apellido</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Ciudad</th>
+                                <th scope="col">Semestre</th>
+                                <th scope="col">Programa</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($data as $key)
-                                <tr>
-                                    <th scope="row">{{$key['autor_id']}}</th>
-                                    <td>{{$key['name']}}</td>
-                                    <td>{{$key['lastname']}}</td>
-                                    <td>{{$key['email']}}</td>
-                                    <td>{{$key['city']}}</td>
-                                    <td>
-                                        <a href="#" type="submit" class="btn btn-info btn-sm"><i class="fa fa-user-edit"></i></a>
-                                        <form class="d-inline" action="">
-                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
+
                             </tbody>
                         </table>
                     </div>
@@ -61,8 +49,10 @@
 @endsection
 
 @section('script-footer')
+
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
+    <script src="{{asset('js/admin/autor.js')}}"></script>
     <script src="{{asset('js/datatable.js')}}"></script>
 @endsection

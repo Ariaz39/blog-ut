@@ -14,18 +14,19 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::group(['prefix' => 'category'], function () {
-        Route::get('/list-all', [CategoryController::class, 'index'])->name('categories');
-        Route::get('/create-category', [CategoryController::class, 'create'])->name('create-category');
-    });
-
     Route::group(['prefix' => 'autor'], function () {
-        Route::get('/list-all', [AutorController::class, 'index'])->name('autors');
-        Route::get('/create-autor', [AutorController::class, 'create'])->name('create-autor');
+//        Route::get('/list-all', [AutorController::class, 'index'])->name('autors');
+        Route::get('/listar', [AutorController::class, 'listar']);
+//        Route::get('/create-autor', [AutorController::class, 'create'])->name('create-autor');
     });
 
     Route::group(['prefix' => 'blog'], function () {
         Route::get('/list-all', [BlogController::class, 'index'])->name('blogs');
         Route::get('/create-blog', [BlogController::class, 'create'])->name('create-blog');
+    });
+
+    Route::group(['prefix' => 'category'], function () {
+        Route::get('/list-all', [CategoryController::class, 'index'])->name('categories');
+        Route::get('/create-category', [CategoryController::class, 'create'])->name('create-category');
     });
 });

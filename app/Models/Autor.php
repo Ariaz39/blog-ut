@@ -17,6 +17,8 @@ class Autor extends Model
         'lastname',
         'email',
         'city',
+        'semester',
+        'program',
         'state',
         'created_at'
     ];
