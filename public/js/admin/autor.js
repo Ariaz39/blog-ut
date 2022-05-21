@@ -1,30 +1,16 @@
-$(document).ready(function() {
+$(document).ready(function () {
     listAll();
 });
 
 function listAll() {
-    $('#list-all').DataTable({
-        language: {
-            'url' : '//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
-        }
-    });
-
     $.ajax({
         url: "http://localhost:8000/api/admin/autor/listar",
         type: "GET",
         contentType: 'application/json',
         dataType: 'json',
-        data: {
-            nombre: 'name',
-            nombre: 'lastname',
-            nombre: 'city'
-        },
         success: function (response) {
-            var autors = response
-            $('table>tbody').html('') //Esta linea borra el mensaje de que no existen registros
-            console.log(autors)
-            $.each(autors, function (i, item) {
-                var row = '<tr>' +
+            $.each(response, function (i, item) {
+                const row = '<tr>' +
                     '<td>' + item.autor_id + '</td>' +
                     '<td>' + item.name + '</td>' +
                     '<td>' + item.lastname + '</td>' +
@@ -32,10 +18,123 @@ function listAll() {
                     '<td>' + item.city + '</td>' +
                     '<td>' + item.semester + '</td>' +
                     '<td>' + item.program + '</td>' +
-                    '<td><a class="btn-sm btn-warning text-decoration-none" onclick="showBodypart(' + item.bodypart_id + ')" data-toggle="modal" data-target=".modal-update">Editar</a>&nbsp;<a class="btn-sm btn-danger text-decoration-none" onclick="deleteBodypart(' + item.bodypart_id + ')">Borrar</a></td>' +
+                    '<td><a class="btn-sm btn-warning text-decoration-none" onclick="showAutor(' + item.autor_id + ')" data-toggle="modal" data-target=".modal-update">Editar</a>&nbsp;<a class="btn-sm btn-danger text-decoration-none" onclick="deleteAutor(' + item.autor_id + ')">Borrar</a></td>' +
                     '</tr>';
                 $('table>tbody').append(row);
             });
         }
     });
+}
+
+function storeAutor() {
+    data = {
+        'name': $('input:required|text[name="nameAutor"]').val(),
+        'lastname': $('input:required|text[name="lastnameAutor"]').val(),
+        'email': $('input:required|text[name="emailAutor"]').val(),
+        'city': $('input:required|text[name="cityAutor"]').val(),
+        'semester': $('input:required|text[name="semesterAutor"]').val(),
+        'program': $('input:required|text[name="programAutor"]').val()
+    }
+
+    $.ajax({
+        url: 'http://localhost:8000/api/admin/autor/store',
+        type: 'POST',
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (response) {
+            // alert(response.msg);
+            toastr.success(response.msg);
+            $('.close').click();
+            $('#formCreateAutor').trigger("reset");
+            $('table>tbody').html('');
+            listAll();
+        },
+        error: function (response) {
+            var err = response.responseJSON;
+            toastr.error(err.msg, 'valio verga');
+        }
+    });
+}
+
+function showAutor(id) {
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8000/api/admin/autor/show/" + id,
+        success: function (response) {
+            data = response.data;
+            $("input[name='uAutorId']").val(data.autor_id);
+            $("input[name='uNameAutor']").val(data.name);
+            $("input[name='uLastnameAutor']").val(data.lastname);
+            $("input[name='uEmailAutor']").val(data.email);
+            $("input[name='uCityAutor']").val(data.city);
+            $("input[name='uProgramAutor']").val(data.program);
+            $("input[name='uSemesterAutor']").val(data.semester);
+        },
+        error: function (response) {
+            var err = response.responseJSON;
+            toastr.error(err.msg, 'valio verga');
+        }
+    });
+}
+
+function updateAutor() {
+
+    data = {
+        'autor_id': $('input:required|text[name="uAutorId"]').val(),
+        'name': $('input:required|text[name="uNameAutor"]').val(),
+        'lastname': $('input:required|text[name="uLastnameAutor"]').val(),
+        'email': $('input:required|text[name="uEmailAutor"]').val(),
+        'city': $('input:required|text[name="uCityAutor"]').val(),
+        'program': $('input:required|text[name="uProgramAutor"]').val(),
+        'semester': $('input:required|text[name="uSemesterAutor"]').val()
+    }
+
+    $.ajax({
+        type: "PUT",
+        url: 'http://localhost:8000/api/admin/autor/update' + data.autor_id,
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (response) {
+            // alert(response.msg);
+            toastr.success(response.msg);
+            $('.close').click();
+            $('table>tbody').html('');
+            listAll();
+        },
+        error: function (response) {
+            var err = response.responseJSON;
+            toastr.error(err.msg, 'valio verga');
+        }
+    });
+}
+
+function deleteAutor(id) {
+    $.ajax({
+        url: "http://localhost:8000/api/admin/autor/delete/" + id,
+        type: "DELETE",
+        data: {
+            'autor_id': id
+        },
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (response) {
+            // alert(response.msg)
+            toastr.error(response.msg);
+            $('table>tbody').html('');
+            listAll();
+        },
+        error: function (response) {
+            var err = response.responseJSON;
+            toastr.error(err.msg, 'valio verga');
+        }
+    });
+}
+
+toastr.options = {
+    // "closeButton": true,
+    "newestOnTop": true,
+    "progressBar": true,
+
 }
