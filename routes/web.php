@@ -6,27 +6,20 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 
-//Route::get('/', function () {
-//    return view('Admin.login');
-//});
-
 Route::group(['prefix' => 'admin'], function () {
-//    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-//    Route::group(['prefix' => 'category'], function () {
-//        Route::get('/list-all', [CategoryController::class, 'index'])->name('categories');
-//        Route::get('/create-category', [CategoryController::class, 'create'])->name('create-category');
-//    });
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::group(['prefix' => 'autor'], function () {
-        Route::get('/list-all', [AutorController::class, 'index'])->name('autors');
-        Route::get('/create-autor', [AutorController::class, 'create'])->name('create-autor');
+        Route::get('/', [AutorController::class, 'index'])->name('autors');
     });
 
-//    Route::group(['prefix' => 'blog'], function () {
-//        Route::get('/list-all', [BlogController::class, 'index'])->name('blogs');
-//        Route::get('/create-blog', [BlogController::class, 'create'])->name('create-blog');
-//    });
+    Route::group(['prefix' => 'blog'], function () {
+        Route::get('/', [BlogController::class, 'index'])->name('blogs');
+    });
+
+    Route::group(['prefix' => 'category'], function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('categories');
+    });
 });
 
 

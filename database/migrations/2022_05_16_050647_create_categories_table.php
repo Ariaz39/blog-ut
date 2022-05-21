@@ -16,7 +16,7 @@ class CreateCategoriesTable extends Migration
         Schema::create('blg-categories', function (Blueprint $table) {
             $table->bigIncrements('category_id');
             $table->string('name');
-            $table->tinyInteger('state');
+            $table->tinyInteger('state')->default(1);
             $table->dateTime('created_at');
         });
     }

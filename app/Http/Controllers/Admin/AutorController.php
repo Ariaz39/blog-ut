@@ -10,28 +10,26 @@ class AutorController extends Controller
 {
     public function index()
     {
-//        $data = Autor::where('state', 1)->get()->toArray();
         return view('Admin.autors');
-//        return response($data, 200);
     }
 
-    public function listar()
+    public function listAll()
     {
         $data = Autor::where('state', 1)->get();
         return response($data, 200);
     }
 
-    public function create()
+    public function createAutor()
     {
         return view('Admin.create_autor');
     }
 
-    public function store(Request $request)
+    public function storeAutor(Request $request)
     {
         //
     }
 
-    public function show($id)
+    public function showAutor($id)
     {
         //
     }
@@ -41,12 +39,12 @@ class AutorController extends Controller
         //
     }
 
-    public function update(Request $request, $id)
+    public function updateAutor(Request $request, $id)
     {
         //
     }
 
-    public function destroy($id)
+    public function deleteAutor($id)
     {
         //
     }
