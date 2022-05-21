@@ -19,6 +19,8 @@ class CreateAutorsTable extends Migration
             $table->string('lastname');
             $table->string('email');
             $table->string('city');
+            $table->tinyInteger('semester');
+            $table->string('program');
             $table->tinyInteger('state');
             $table->dateTime('created_at');
         });

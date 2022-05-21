@@ -10,22 +10,28 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $data = Category::where('state', 1)->get()->toArray();
-//        return view('Admin.categories', compact('data'));
+        return view('Admin.categories');
+    }
+
+    public function listAll()
+    {
+        $data = Category::where('state', 1)->get();
         return response($data, 200);
     }
 
-    public function create()
+    public function createCategory()
     {
         return view('Admin.create_category');
     }
 
-    public function store(Request $request)
+    public function storeCategory(Request $request)
     {
-        //
+        $category = new Category();
+        $category['name'] = $request['name'];
+        $category['s'] = $request['name'];
     }
 
-    public function show($id)
+    public function showCategory($id)
     {
         //
     }
@@ -35,12 +41,12 @@ class CategoryController extends Controller
         //
     }
 
-    public function update(Request $request, $id)
+    public function updateCategory(Request $request, $id)
     {
         //
     }
 
-    public function destroy($id)
+    public function deleteCategory($id)
     {
         //
     }

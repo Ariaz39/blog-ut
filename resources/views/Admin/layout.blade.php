@@ -32,7 +32,7 @@
                     <i class="fas fa-users"></i> Autores </a>
                 <div class="dash-nav-dropdown-menu">
                     <a href="{{route('autors')}}" class="dash-nav-dropdown-item">Listar</a>
-                    <a href="{{route('create-autor')}}" class="dash-nav-dropdown-item">Crear</a>
+                    <a href="" class="dash-nav-dropdown-item">Crear</a>
                 </div>
             </div>
             <div class="dash-nav-dropdown">
@@ -40,7 +40,7 @@
                     <i class="fas fa-list"></i> Categorias </a>
                 <div class="dash-nav-dropdown-menu">
                     <a href="{{route('categories')}}" class="dash-nav-dropdown-item">Listar</a>
-                    <a href="{{route('create-category')}}" class="dash-nav-dropdown-item">Crear</a>
+                    <a href="" class="dash-nav-dropdown-item">Crear</a>
                 </div>
             </div>
             <div class="dash-nav-dropdown">
@@ -48,7 +48,7 @@
                     <i class="fas fa-newspaper"></i> Blogs </a>
                 <div class="dash-nav-dropdown-menu">
                     <a href="{{route('blogs')}}" class="dash-nav-dropdown-item">Listar</a>
-                    <a href="{{route('create-blog')}}" class="dash-nav-dropdown-item">Crear</a>
+                    <a href="" class="dash-nav-dropdown-item">Crear</a>
                 </div>
             </div>
 {{--            <div class="dash-nav-dropdown ">--}}
