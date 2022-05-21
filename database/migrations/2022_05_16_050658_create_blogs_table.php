@@ -20,7 +20,7 @@ class CreateBlogsTable extends Migration
             $table->string('image');
             $table->string('title');
             $table->string('content');
-            $table->tinyInteger('state');
+            $table->tinyInteger('state')->default(1);
             $table->dateTime('created_at');
 
             $table->foreign('category_id')->references('category_id')->on('blg-categories');

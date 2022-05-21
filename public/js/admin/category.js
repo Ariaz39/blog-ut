@@ -1,23 +1,33 @@
+const base_url = 'http://localhost:8000/api/admin/'
+
 $(document).ready(function () {
     listAll();
 });
 
+$("#formCreateCategory").submit(function(e) {
+    e.preventDefault()
+    storeCategory()
+});
+
+$("#formUpdateCategory").submit(function(e) {
+    e.preventDefault()
+    updateCategory()
+});
+
+
 function listAll() {
     $.ajax({
-        url: "http://localhost:8000/api/admin/category/list-all",
+        url: base_url + "category/list-all",
         type: "GET",
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            $.each(response, function (i, item) {
+            let data = response.data
+            $('table>tbody').html('')
+            $.each(data, function (i, item) {
                 const row = '<tr>' +
                     '<td>' + item.category_id + '</td>' +
                     '<td>' + item.name + '</td>' +
-                    '<td>' + item.lastname + '</td>' +
-                    '<td>' + item.email + '</td>' +
-                    '<td>' + item.city + '</td>' +
-                    '<td>' + item.semester + '</td>' +
-                    '<td>' + item.program + '</td>' +
                     '<td><a class="btn-sm btn-warning text-decoration-none" onclick="showCategory(' + item.category_id + ')" data-toggle="modal" data-target=".modal-update">Editar</a>&nbsp;<a class="btn-sm btn-danger text-decoration-none" onclick="deleteCategory(' + item.category_id + ')">Borrar</a></td>' +
                     '</tr>';
                 $('table>tbody').append(row);
@@ -28,22 +38,16 @@ function listAll() {
 
 function storeCategory() {
     data = {
-        'name': $('input:required|text[name="nameCategory"]').val(),
-        'lastname': $('input:required|text[name="lastnameCategory"]').val(),
-        'email': $('input:required|text[name="emailCategory"]').val(),
-        'city': $('input:required|text[name="cityCategory"]').val(),
-        'semester': $('input:required|text[name="semesterCategory"]').val(),
-        'program': $('input:required|text[name="programCategory"]').val()
+        'name': $('input:text[name="nameCategory"]').val()
     }
 
     $.ajax({
-        url: 'http://localhost:8000/api/admin/category/store-category',
+        url: base_url + 'category/store-category',
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            // alert(response.msg);
             toastr.success(response.msg);
             $('.close').click();
             $('#formCreateCategory').trigger("reset");
@@ -59,17 +63,12 @@ function storeCategory() {
 
 function showCategory(id) {
     $.ajax({
+        url: base_url + "category/show-category/" + id,
         type: "GET",
-        url: "http://localhost:8000/api/admin/category/show-category/" + id,
         success: function (response) {
-            data = response.data;
+            let data = response.data
             $("input[name='uCategoryId']").val(data.category_id);
             $("input[name='uNameCategory']").val(data.name);
-            $("input[name='uLastnameCategory']").val(data.lastname);
-            $("input[name='uEmailCategory']").val(data.email);
-            $("input[name='uCityCategory']").val(data.city);
-            $("input[name='uProgramCategory']").val(data.program);
-            $("input[name='uSemesterCategory']").val(data.semester);
         },
         error: function (response) {
             var err = response.responseJSON;
@@ -81,26 +80,20 @@ function showCategory(id) {
 function updateCategory() {
 
     data = {
-        'category_id': $('input:required|text[name="uCategoryId"]').val(),
-        'name': $('input:required|text[name="uNameCategory"]').val(),
-        'lastname': $('input:required|text[name="uLastnameCategory"]').val(),
-        'email': $('input:required|text[name="uEmailCategory"]').val(),
-        'city': $('input:required|text[name="uCityCategory"]').val(),
-        'program': $('input:required|text[name="uProgramCategory"]').val(),
-        'semester': $('input:required|text[name="uSemesterCategory"]').val()
+        'category_id': $('input:text[name="uCategoryId"]').val(),
+        'name': $('input:text[name="uNameCategory"]').val(),
     }
 
     $.ajax({
         type: "PUT",
-        url: 'http://localhost:8000/api/admin/category/update-category' + data.category_id,
+        url: base_url + 'category/update-category/' + data.category_id,
         data: JSON.stringify(data),
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            // alert(response.msg);
             toastr.success(response.msg);
             $('.close').click();
-            $('table>tbody').html('');
+            $('#formCreateCategory').trigger("reset");
             listAll();
         },
         error: function (response) {
@@ -112,7 +105,7 @@ function updateCategory() {
 
 function deleteCategory(id) {
     $.ajax({
-        url: "http://localhost:8000/api/admin/category/delete-category/" + id,
+        url: base_url + "category/delete-category/" + id,
         type: "DELETE",
         data: {
             'category_id': id

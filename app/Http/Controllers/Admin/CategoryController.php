@@ -16,38 +16,71 @@ class CategoryController extends Controller
     public function listAll()
     {
         $data = Category::where('state', 1)->get();
-        return response($data, 200);
-    }
-
-    public function createCategory()
-    {
-        return view('Admin.create_category');
+//        return response($data, 200,);
+        return response([
+            'success' => 'true',
+            'data' => $data,
+            'code' => 200,
+            'msg' => 'Proceso realizado exitosamente.'
+        ]);
     }
 
     public function storeCategory(Request $request)
     {
         $category = new Category();
         $category['name'] = $request['name'];
-        $category['s'] = $request['name'];
+        $category['created_at'] = now();
+        $category->save();
+
+        return response([
+            'success' => 'true',
+            'data' => [],
+            'code' => 200,
+            'msg' => 'Proceso realizado exitosamente.'
+        ]);
     }
 
     public function showCategory($id)
     {
-        //
-    }
+        $category = Category::where('state', 1)
+        ->find($id);
 
-    public function edit($id)
-    {
-        //
+//        return response($category);
+        return response([
+            'success' => 'true',
+            'data' => $category,
+            'code' => 200,
+            'msg' => 'Categoría detallada exitosamente.'
+        ]);
     }
 
     public function updateCategory(Request $request, $id)
     {
-        //
+        $update_category = Category::find($id);
+
+        $update_category['name'] = $request['name'];
+        $update_category->update();
+
+        return response([
+            'success' => 'true',
+            'data' => [],
+            'code' => 200,
+            'msg' => 'Proceso realizado exitosamente.'
+        ]);
     }
 
     public function deleteCategory($id)
     {
-        //
+        $delete_category = Category::find($id);
+
+        $delete_category['state'] = 2;
+        $delete_category->update();
+
+        return response([
+            'success' => 'true',
+            'data' => [],
+            'code' => 200,
+            'msg' => 'Categoría bloqueada exitosamente.'
+        ]);
     }
 }
