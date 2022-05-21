@@ -3,21 +3,24 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Autor;
-use App\Models\Blog;
-use App\Models\Category;
+use App\UseCases\Contracts\Admin\GetDataDashboardInterface;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+    private $getDataDashboard;
+
+    public function __construct(GetDataDashboardInterface $getDataDashboard)
+    {
+        $this->getDataDashboard = $getDataDashboard;    
+    }
+
     public function index()
     {
-        $data['count_blogs'] = Blog::where('state', 1)->count();
-        $data['count_autors'] = Autor::where('state', 1)->count();
-        $data['count_categories'] = Category::where('state', 1)->count();
-        $data['blogs'] = Blog::where('state', 1)->get()->toArray();
-//        return view('Admin.dashboard', compact('data','blogs','autors','categories'));
-        return response($data, 200);
+        $data = $this->getDataDashboard->handle();
+
+        return view('Admin.dashboard', compact('data'));
+        // return response($this->getDataDashboard->handle(), 200);
     }
 
     public function create()
