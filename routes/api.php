@@ -16,25 +16,25 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'autor'], function () {
         Route::get('/list-all', [AutorController::class, 'listAll']);
-        Route::get('/store-autor', [CategoryController::class, 'storeAutor']);
-        Route::get('/show-autor', [CategoryController::class, 'showAutor']);
-        Route::get('/update-autor', [CategoryController::class, 'updateAutor']);
-        Route::get('/delete-autor', [CategoryController::class, 'deleteAutor']);
+        Route::post('/store-autor', [AutorController::class, 'storeAutor']);
+        Route::get('/show-autor/{autor_id}', [AutorController::class, 'showAutor']);
+        Route::put('/update-autor/{autor_id}', [AutorController::class, 'updateAutor']);
+        Route::delete('/delete-autor/{autor_id}', [AutorController::class, 'deleteAutor']);
     });
 
     Route::group(['prefix' => 'blog'], function () {
-        Route::get('/list-all', [BlogController::class, 'index']);
-        Route::get('/store-blog', [CategoryController::class, 'storeBlog']);
-        Route::get('/show-blog', [CategoryController::class, 'showBlog']);
-        Route::get('/update-blog', [CategoryController::class, 'updateBlog']);
-        Route::get('/delete-blog', [CategoryController::class, 'deleteBlog']);
+        Route::get('/list-all', [BlogController::class, 'listAll']);
+        Route::post('/store-blog', [BlogController::class, 'storeBlog']);
+        Route::get('/show-blog/{blog_id}', [BlogController::class, 'showBlog']);
+        Route::put('/update-blog/{blog_id}', [BlogController::class, 'updateBlog']);
+        Route::delete('/delete-blog/{blog_id}', [BlogController::class, 'deleteBlog']);
     });
 
     Route::group(['prefix' => 'category'], function () {
-        Route::get('/list-all', [CategoryController::class, 'index']);
-        Route::get('/store-category', [CategoryController::class, 'storeCategory']);
-        Route::get('/show-category', [CategoryController::class, 'showCategory']);
-        Route::get('/update-category', [CategoryController::class, 'updateCategory']);
-        Route::get('/delete-category', [CategoryController::class, 'deleteCategory']);
+        Route::get('/list-all', [CategoryController::class, 'listAll']);
+        Route::post('/store-category', [CategoryController::class, 'storeCategory']);
+        Route::get('/show-category/{category_id}', [CategoryController::class, 'showCategory']);
+        Route::put('/update-category/{category_id}', [CategoryController::class, 'updateCategory']);
+        Route::delete('/delete-category/{category_id}', [CategoryController::class, 'deleteCategory']);
     });
 });

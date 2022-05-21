@@ -5,7 +5,6 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 @endsection
 
 @section('title', 'Autores')
@@ -90,10 +89,6 @@
                                 <input type="text" class="form-control" id="programAutor"
                                        placeholder="Program">
                             </div>
-{{--                            <div class="form-group col-md-6">--}}
-{{--                                <input type="number" class="form-control" id="semesterAutor"--}}
-{{--                                       placeholder="Semester" min="1" max="10">--}}
-{{--                            </div>--}}
                             <div class="form-group col-md-6">
                                 <select class="custom-select" id="semesterAutor">
                                     <option value="">Seleccione...</option>
@@ -163,10 +158,6 @@
                                 <input type="text" class="form-control" id="uProgramAutor"
                                        placeholder="Program">
                             </div>
-                            {{--                            <div class="form-group col-md-6">--}}
-                            {{--                                <input type="number" class="form-control" id="semesterAutor"--}}
-                            {{--                                       placeholder="Semester" min="1" max="10">--}}
-                            {{--                            </div>--}}
                             <div class="form-group col-md-6">
                                 <select class="custom-select" id="uSemesterAutor">
                                     <option value="">Seleccione...</option>
@@ -194,12 +185,5 @@
 @endsection
 
 @section('script-footer')
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
-
-    {{--    <script src="{{asset('js/datatable.js')}}"></script>--}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="{{asset('js/admin/autor.js')}}"></script>
 @endsection

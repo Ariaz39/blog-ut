@@ -11,6 +11,7 @@ class Category extends Model
 
     protected $table = 'blg-categories';
     protected $primaryKey = 'category_id';
+    public $timestamps = false;
 
     protected $fillable = [
         'name',
