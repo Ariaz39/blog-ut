@@ -27,7 +27,11 @@ function listAll() {
                 const row = '<tr>' +
                     '<td>' + item.category_id + '</td>' +
                     '<td>' + item.name + '</td>' +
-                    '<td><a class="btn-sm btn-warning text-decoration-none" onclick="showCategory(' + item.category_id + ')" data-toggle="modal" data-target=".modal-update">Editar</a>&nbsp;<a class="btn-sm btn-danger text-decoration-none" onclick="deleteCategory(' + item.category_id + ')">Borrar</a></td>' +
+                    '<td>' +
+                    '<a class="btn-sm btn-warning text-decoration-none" onclick="showCategory(' + item.category_id + ')" data-toggle="modal" data-target=".modal-update">Editar</a>' +
+                    '&nbsp;' +
+                    '<a class="btn-sm btn-danger text-decoration-none" onclick="deleteCategory(' + item.category_id + ')">Borrar</a>' +
+                    '</td>' +
                     '</tr>';
                 $('table>tbody').append(row);
             });

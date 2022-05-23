@@ -21,9 +21,9 @@ function listAll() {
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            let data = response.data
+            console.log(response)
             $('table>tbody').html('')
-            $.each(data, function (i, item) {
+            $.each(response, function (i, item) {
                 const row = '<tr>' +
                     '<td>' + item.autor_id + '</td>' +
                     '<td>' + item.name + '</td>' +
@@ -38,7 +38,7 @@ function listAll() {
                     '<a class="btn btn-sm btn-danger" onclick="deleteAutor(' + item.autor_id + ')">Borrar</a>' +
                     '</td>' +
                     '</tr>';
-                $('table>tbody').append(row);
+                $('#list-all-authors>tbody').append(row);
             });
         }
     });
@@ -46,13 +46,14 @@ function listAll() {
 
 function storeAutor() {
     data = {
-        'name': $('input:text[name="nameAutor"]').val(),
-        'lastname': $('input:text[name="lastnameAutor"]').val(),
-        'email': $('input:text[name="emailAutor"]').val(),
-        'city': $('input:text[name="cityAutor"]').val(),
-        'semester': $('input:text[name="semesterAutor"]').val(),
-        'program': $('input:text[name="programAutor"]').val()
+        'name': $('#nameAutor').val(),
+        'lastname': $('#lastnameAutor').val(),
+        'email': $('#emailAutor').val(),
+        'city': $('#cityAutor').val(),
+        'semester': $('#semesterAutor').val(),
+        'program': $('#programAutor').val()
     }
+    console.log(data)
 
     $.ajax({
         url: base_url + 'autor/store-autor',
@@ -79,14 +80,13 @@ function showAutor(id) {
         type: "GET",
         url: base_url + "autor/show-autor/" + id,
         success: function (response) {
-            let data = response.data
-            $("input[name='uAutorId']").val(data.autor_id);
-            $("input[name='uNameAutor']").val(data.name);
-            $("input[name='uLastnameAutor']").val(data.lastname);
-            $("input[name='uEmailAutor']").val(data.email);
-            $("input[name='uCityAutor']").val(data.city);
-            $("input[name='uProgramAutor']").val(data.program);
-            $("input[name='uSemesterAutor']").val(data.semester);
+            $("#uAutorId").val(response.autor_id);
+            $("#uNameAutor").val(response.name);
+            $("#uLastnameAutor").val(response.lastname);
+            $("#uEmailAutor").val(response.email);
+            $("#uCityAutor").val(response.city);
+            $("#uProgramAutor").val(response.program);
+            $("#uSemesterAutor").val(response.semester);
         },
         error: function (response) {
             var err = response.responseJSON;
@@ -98,13 +98,13 @@ function showAutor(id) {
 function updateAutor() {
 
     data = {
-        'autor_id': $('input:text[name="uAutorId"]').val(),
-        'name': $('input:text[name="uNameAutor"]').val(),
-        'lastname': $('input:text[name="uLastnameAutor"]').val(),
-        'email': $('input:text[name="uEmailAutor"]').val(),
-        'city': $('input:text[name="uCityAutor"]').val(),
-        'program': $('input:text[name="uProgramAutor"]').val(),
-        'semester': $('input:text[name="uSemesterAutor"]').val()
+        'autor_id': $('#uAutorId').val(),
+        'name': $('#uNameAutor').val(),
+        'lastname': $('#uLastnameAutor').val(),
+        'email': $('#uEmailAutor').val(),
+        'city': $('#uCityAutor').val(),
+        'program': $('#uProgramAutor').val(),
+        'semester': $('#uSemesterAutor').val()
     }
 
     $.ajax({

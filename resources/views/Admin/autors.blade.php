@@ -66,42 +66,42 @@
                     <form id="formCreateAutor">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" id="nameAutor"
+                                <input type="text" class="form-control" name="nameAutor" id="nameAutor"
                                        placeholder="Nombre">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" id="lastnameAutor"
+                                <input type="text" class="form-control" name="lastnameAutor" id="lastnameAutor"
                                        placeholder="Apellidos">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <input type="email" class="form-control" id="emailAutor"
+                                <input type="email" class="form-control" name="emailAutor" id="emailAutor"
                                        placeholder="ejemplo@correo.com">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" id="cityAutor"
+                                <input type="text" class="form-control" name="cityAutor" id="cityAutor"
                                        placeholder="Ciudad">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" id="programAutor"
+                                <input type="text" class="form-control" name="programAutor" id="programAutor"
                                        placeholder="Program">
                             </div>
                             <div class="form-group col-md-6">
-                                <select class="custom-select" id="semesterAutor">
+                                <select class="custom-select" name="semesterAutor" id="semesterAutor">
                                     <option value="">Seleccione...</option>
-                                    <option value="1">Semestre 1</option>
-                                    <option value="2">Semestre 2</option>
-                                    <option value="3">Semestre 3</option>
-                                    <option value="4">Semestre 4</option>
-                                    <option value="5">Semestre 5</option>
-                                    <option value="6">Semestre 6</option>
-                                    <option value="7">Semestre 7</option>
-                                    <option value="8">Semestre 8</option>
-                                    <option value="9">Semestre 9</option>
-                                    <option value="10">Semestre 10</option>
+                                    <option value="Semestre 1">Semestre 1</option>
+                                    <option value="Semestre 2">Semestre 2</option>
+                                    <option value="Semestre 3">Semestre 3</option>
+                                    <option value="Semestre 4">Semestre 4</option>
+                                    <option value="Semestre 5">Semestre 5</option>
+                                    <option value="Semestre 6">Semestre 6</option>
+                                    <option value="Semestre 7">Semestre 7</option>
+                                    <option value="Semestre 8">Semestre 8</option>
+                                    <option value="Semestre 9">Semestre 9</option>
+                                    <option value="Semestre 10">Semestre 10</option>
                                 </select>
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                     <form id="formUpdateAutor">
                         <div class="form-row">
                             <div>
-                                <input type="text" class="d-none" name="uAutorId">
+                                <input type="text" class="d-none" id="uAutorId">
                             </div>
                             <div class="form-group col-md-6">
                                 <input type="text" class="form-control" id="uNameAutor"
@@ -174,7 +174,7 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-block btn-primary">Crear</button>
+                        <button type="submit" class="btn btn-block btn-primary">Actualizar</button>
                     </form>
                 </div>
             </div>
