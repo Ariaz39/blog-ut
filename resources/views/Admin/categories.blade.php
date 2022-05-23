@@ -26,7 +26,7 @@
 
                     </div>
                     <div class="card-body spur-card-body-chart">
-                        <table class="table table-hover" id="list-all-authors">
+                        <table class="table table-hover table-in-card" id="list-all-authors">
                             <thead>
                             <tr>
                                 <th scope="col">ID</th>
@@ -56,7 +56,7 @@
                         &times;
                     </button>
                 </div>
-                <div class="card-body">
+                <div class="card-body ">
                     <form id="formCreateCategory">
                         <div class="form-row">
                             <div class="form-group col-md-12">

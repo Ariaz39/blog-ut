@@ -11,6 +11,7 @@ class Autor extends Model
 
     protected $table = 'blg-autors';
     protected $primaryKey = 'autor_id';
+    public $timestamps = false;
 
     protected $fillable = [
         'name',

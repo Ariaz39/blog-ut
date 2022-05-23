@@ -22,16 +22,12 @@ function listAll() {
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            let data = response.data
             $('table>tbody').html('')
-            $.each(data, function (i, item) {
+            $.each(response, function (i, item) {
                 const row = '<tr>' +
                     '<td>' + item.category_id + '</td>' +
                     '<td>' + item.name + '</td>' +
-                    '<td>' +
-                    '<btn class="btn btn-sm btn-warning" onclick="showCategory(' + item.category_id + ')" data-toggle="modal" data-target=".modal-update">Editar</btn>' +
-                    '&nbsp;' +
-                    '<btn class="btn btn-sm btn-danger" onclick="deleteCategory(' + item.category_id + ')">Borrar</btn></td>' +
+                    '<td><a class="btn-sm btn-warning text-decoration-none" onclick="showCategory(' + item.category_id + ')" data-toggle="modal" data-target=".modal-update">Editar</a>&nbsp;<a class="btn-sm btn-danger text-decoration-none" onclick="deleteCategory(' + item.category_id + ')">Borrar</a></td>' +
                     '</tr>';
                 $('table>tbody').append(row);
             });
@@ -69,9 +65,8 @@ function showCategory(id) {
         url: base_url + "category/show-category/" + id,
         type: "GET",
         success: function (response) {
-            let data = response.data
-            $("input[name='uCategoryId']").val(data.category_id);
-            $("input[name='uNameCategory']").val(data.name);
+            $("input[name='uCategoryId']").val(response.category_id);
+            $("input[name='uNameCategory']").val(response.name);
         },
         error: function (response) {
             var err = response.responseJSON;
@@ -116,6 +111,7 @@ function deleteCategory(id) {
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
+            // alert(response.msg)
             toastr.error(response.msg);
             $('table>tbody').html('');
             listAll();
