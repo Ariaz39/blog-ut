@@ -1,15 +1,29 @@
+const base_url = 'http://localhost:8000/api/admin/'
+
 $(document).ready(function () {
     listAll();
 });
 
+$("#formCreateAutor").submit(function(e) {
+    e.preventDefault()
+    storeAutor()
+});
+
+$("#formUpdateAutor").submit(function(e) {
+    e.preventDefault()
+    updateAutor()
+});
+
 function listAll() {
     $.ajax({
-        url: "http://localhost:8000/api/admin/autor/list-all",
+        url: base_url + "autor/list-all",
         type: "GET",
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            $.each(response, function (i, item) {
+            let data = response.data
+            $('table>tbody').html('')
+            $.each(data, function (i, item) {
                 const row = '<tr>' +
                     '<td>' + item.autor_id + '</td>' +
                     '<td>' + item.name + '</td>' +
@@ -18,7 +32,11 @@ function listAll() {
                     '<td>' + item.city + '</td>' +
                     '<td>' + item.semester + '</td>' +
                     '<td>' + item.program + '</td>' +
-                    '<td><a class="btn-sm btn-warning text-decoration-none" onclick="showAutor(' + item.autor_id + ')" data-toggle="modal" data-target=".modal-update">Editar</a>&nbsp;<a class="btn-sm btn-danger text-decoration-none" onclick="deleteAutor(' + item.autor_id + ')">Borrar</a></td>' +
+                    '<td>' +
+                    '<a class="btn btn-sm btn-warning" onclick="showAutor(' + item.autor_id + ')" data-toggle="modal" data-target=".modal-update">Editar</a>' +
+                    '&nbsp;' +
+                    '<a class="btn btn-sm btn-danger" onclick="deleteAutor(' + item.autor_id + ')">Borrar</a>' +
+                    '</td>' +
                     '</tr>';
                 $('table>tbody').append(row);
             });
@@ -28,22 +46,21 @@ function listAll() {
 
 function storeAutor() {
     data = {
-        'name': $('input:required|text[name="nameAutor"]').val(),
-        'lastname': $('input:required|text[name="lastnameAutor"]').val(),
-        'email': $('input:required|text[name="emailAutor"]').val(),
-        'city': $('input:required|text[name="cityAutor"]').val(),
-        'semester': $('input:required|text[name="semesterAutor"]').val(),
-        'program': $('input:required|text[name="programAutor"]').val()
+        'name': $('input:text[name="nameAutor"]').val(),
+        'lastname': $('input:text[name="lastnameAutor"]').val(),
+        'email': $('input:text[name="emailAutor"]').val(),
+        'city': $('input:text[name="cityAutor"]').val(),
+        'semester': $('input:text[name="semesterAutor"]').val(),
+        'program': $('input:text[name="programAutor"]').val()
     }
 
     $.ajax({
-        url: 'http://localhost:8000/api/admin/autor/store-autor',
+        url: base_url + 'autor/store-autor',
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            // alert(response.msg);
             toastr.success(response.msg);
             $('.close').click();
             $('#formCreateAutor').trigger("reset");
@@ -60,9 +77,9 @@ function storeAutor() {
 function showAutor(id) {
     $.ajax({
         type: "GET",
-        url: "http://localhost:8000/api/admin/autor/show-autor/" + id,
+        url: base_url + "autor/show-autor/" + id,
         success: function (response) {
-            data = response.data;
+            let data = response.data
             $("input[name='uAutorId']").val(data.autor_id);
             $("input[name='uNameAutor']").val(data.name);
             $("input[name='uLastnameAutor']").val(data.lastname);
@@ -81,26 +98,25 @@ function showAutor(id) {
 function updateAutor() {
 
     data = {
-        'autor_id': $('input:required|text[name="uAutorId"]').val(),
-        'name': $('input:required|text[name="uNameAutor"]').val(),
-        'lastname': $('input:required|text[name="uLastnameAutor"]').val(),
-        'email': $('input:required|text[name="uEmailAutor"]').val(),
-        'city': $('input:required|text[name="uCityAutor"]').val(),
-        'program': $('input:required|text[name="uProgramAutor"]').val(),
-        'semester': $('input:required|text[name="uSemesterAutor"]').val()
+        'autor_id': $('input:text[name="uAutorId"]').val(),
+        'name': $('input:text[name="uNameAutor"]').val(),
+        'lastname': $('input:text[name="uLastnameAutor"]').val(),
+        'email': $('input:text[name="uEmailAutor"]').val(),
+        'city': $('input:text[name="uCityAutor"]').val(),
+        'program': $('input:text[name="uProgramAutor"]').val(),
+        'semester': $('input:text[name="uSemesterAutor"]').val()
     }
 
     $.ajax({
         type: "PUT",
-        url: 'http://localhost:8000/api/admin/autor/update-autor' + data.autor_id,
+        url: base_url + 'autor/update-autor/' + data.autor_id,
         data: JSON.stringify(data),
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            // alert(response.msg);
             toastr.success(response.msg);
             $('.close').click();
-            $('table>tbody').html('');
+            $('#formCreateCategory').trigger("reset");
             listAll();
         },
         error: function (response) {
@@ -112,7 +128,7 @@ function updateAutor() {
 
 function deleteAutor(id) {
     $.ajax({
-        url: "http://localhost:8000/api/admin/autor/delete-autor/" + id,
+        url: base_url + "autor/delete-autor/" + id,
         type: "DELETE",
         data: {
             'autor_id': id
@@ -120,7 +136,6 @@ function deleteAutor(id) {
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            // alert(response.msg)
             toastr.error(response.msg);
             $('table>tbody').html('');
             listAll();

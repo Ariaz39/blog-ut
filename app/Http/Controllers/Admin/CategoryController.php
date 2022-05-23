@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function listAll()
     {
         $data = Category::where('state', 1)->get();
-//        return response($data, 200,);
+
         return response([
             'success' => 'true',
             'data' => $data,
@@ -45,7 +45,6 @@ class CategoryController extends Controller
         $category = Category::where('state', 1)
         ->find($id);
 
-//        return response($category);
         return response([
             'success' => 'true',
             'data' => $category,
@@ -57,7 +56,6 @@ class CategoryController extends Controller
     public function updateCategory(Request $request, $id)
     {
         $update_category = Category::find($id);
-
         $update_category['name'] = $request['name'];
         $update_category->update();
 
@@ -72,7 +70,6 @@ class CategoryController extends Controller
     public function deleteCategory($id)
     {
         $delete_category = Category::find($id);
-
         $delete_category['state'] = 2;
         $delete_category->update();
 
