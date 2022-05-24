@@ -4,19 +4,19 @@ $(document).ready(function () {
     listAll();
 });
 
-$("#formCreateAutor").submit(function(e) {
+$("#formCreateBlog").submit(function(e) {
     e.preventDefault()
-    storeAutor()
+    storeBlog()
 });
 
-$("#formUpdateAutor").submit(function(e) {
+$("#formUpdateBlog").submit(function(e) {
     e.preventDefault()
-    updateAutor()
+    updateBlog()
 });
 
 function listAll() {
     $.ajax({
-        url: base_url + "autor/list-all",
+        url: base_url + "blog/list-all",
         type: "GET",
         contentType: 'application/json',
         dataType: 'json',
@@ -24,38 +24,37 @@ function listAll() {
             $('table>tbody').html('')
             $.each(response, function (i, item) {
                 const row = '<tr>' +
+                    '<td>' + item.blog_id + '</td>' +
+                    '<td>' + item.image + '</td>' +
+                    '<td>' + item.title + '</td>' +
+                    '<td>' + item.content + '</td>' +
                     '<td>' + item.autor_id + '</td>' +
-                    '<td>' + item.name + '</td>' +
-                    '<td>' + item.lastname + '</td>' +
-                    '<td>' + item.email + '</td>' +
-                    '<td>' + item.city + '</td>' +
-                    '<td>' + item.semester + '</td>' +
-                    '<td>' + item.program + '</td>' +
+                    '<td>' + item.category_id + '</td>' +
+                    '<td>' + item.created_at + '</td>' +
                     '<td>' +
-                    '<a class="btn btn-sm btn-warning" onclick="showAutor(' + item.autor_id + ')" data-toggle="modal" data-target=".modal-update">Editar</a>' +
+                    '<a class="btn btn-sm btn-warning" onclick="showBlog(' + item.blog_id + ')" data-toggle="modal" data-target=".modal-update">Editar</a>' +
                     '&nbsp;' +
-                    '<a class="btn btn-sm btn-danger" onclick="deleteAutor(' + item.autor_id + ')">Borrar</a>' +
+                    '<a class="btn btn-sm btn-danger" onclick="deleteBlog(' + item.blog_id + ')">Borrar</a>' +
                     '</td>' +
                     '</tr>';
-                $('#list-all-authors>tbody').append(row);
+                $('#list-all>tbody').append(row);
             });
         }
     });
 }
 
-function storeAutor() {
+function storeBlog() {
     data = {
-        'name': $('#nameAutor').val(),
-        'lastname': $('#lastnameAutor').val(),
-        'email': $('#emailAutor').val(),
-        'city': $('#cityAutor').val(),
-        'semester': $('#semesterAutor').val(),
-        'program': $('#programAutor').val()
+        'image': $('#imageBlog').val(),
+        'title': $('#titleBlog').val(),
+        'content': $('#contentBlog').val(),
+        'autor': $('#autorBlog').val(),
+        'category': $('#categoryBlog').val(),
     }
     console.log(data)
 
     $.ajax({
-        url: base_url + 'autor/store-autor',
+        url: base_url + 'blog/store-blog',
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
@@ -63,7 +62,7 @@ function storeAutor() {
         success: function (response) {
             toastr.success(response.msg);
             $('.close').click();
-            $('#formCreateAutor').trigger("reset");
+            $('#formCreateBlog').trigger("reset");
             $('table>tbody').html('');
             listAll();
         },
@@ -74,18 +73,17 @@ function storeAutor() {
     });
 }
 
-function showAutor(id) {
+function showBlog(id) {
     $.ajax({
         type: "GET",
-        url: base_url + "autor/show-autor/" + id,
+        url: base_url + "blog/show-blog/" + id,
         success: function (response) {
-            $("#uAutorId").val(response.autor_id);
-            $("#uNameAutor").val(response.name);
-            $("#uLastnameAutor").val(response.lastname);
-            $("#uEmailAutor").val(response.email);
-            $("#uCityAutor").val(response.city);
-            $("#uProgramAutor").val(response.program);
-            $("#uSemesterAutor").val(response.semester);
+            $("#uBlogId").val(response.blog_id);
+            $("#uImageBlog").val(response.name);
+            $("#uTitleBlog").val(response.lastname);
+            $("#uContentBlog").val(response.email);
+            $("#uAutorBlog").val(response.city);
+            $("#uCategoryBlog").val(response.program);
         },
         error: function (response) {
             var err = response.responseJSON;
@@ -94,21 +92,20 @@ function showAutor(id) {
     });
 }
 
-function updateAutor() {
+function updateBlog() {
 
     data = {
-        'autor_id': $('#uAutorId').val(),
-        'name': $('#uNameAutor').val(),
-        'lastname': $('#uLastnameAutor').val(),
-        'email': $('#uEmailAutor').val(),
-        'city': $('#uCityAutor').val(),
-        'program': $('#uProgramAutor').val(),
-        'semester': $('#uSemesterAutor').val()
+        'blog_id': $('#uBlogId').val(),
+        'image': $('#imageBlog').val(),
+        'title': $('#titleBlog').val(),
+        'content': $('#contentBlog').val(),
+        'autor': $('#autorBlog').val(),
+        'category': $('#categoryBlog').val(),
     }
 
     $.ajax({
         type: "PUT",
-        url: base_url + 'autor/update-autor/' + data.autor_id,
+        url: base_url + 'blog/update-blog/' + data.blog_id,
         data: JSON.stringify(data),
         contentType: 'application/json',
         dataType: 'json',
@@ -125,12 +122,12 @@ function updateAutor() {
     });
 }
 
-function deleteAutor(id) {
+function deleteBlog(id) {
     $.ajax({
-        url: base_url + "autor/delete-autor/" + id,
+        url: base_url + "blog/delete-blog/" + id,
         type: "DELETE",
         data: {
-            'autor_id': id
+            'blog_id': id
         },
         contentType: 'application/json',
         dataType: 'json',

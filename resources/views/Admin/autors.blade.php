@@ -87,11 +87,11 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <input type="text" class="form-control" name="programAutor" id="programAutor"
-                                       placeholder="Program">
+                                       placeholder="Programa">
                             </div>
                             <div class="form-group col-md-6">
                                 <select class="custom-select" name="semesterAutor" id="semesterAutor">
-                                    <option value="">Seleccione...</option>
+                                    <option value="">Seleccione semestre...</option>
                                     <option value="Semestre 1">Semestre 1</option>
                                     <option value="Semestre 2">Semestre 2</option>
                                     <option value="Semestre 3">Semestre 3</option>
@@ -156,11 +156,11 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <input type="text" class="form-control" id="uProgramAutor"
-                                       placeholder="Program">
+                                       placeholder="Programa">
                             </div>
                             <div class="form-group col-md-6">
                                 <select class="custom-select" id="uSemesterAutor">
-                                    <option value="">Seleccione...</option>
+                                    <option value="">Seleccione semestre...</option>
                                     <option value="1">Semestre 1</option>
                                     <option value="2">Semestre 2</option>
                                     <option value="3">Semestre 3</option>
