@@ -12,7 +12,7 @@ class DashboardController extends Controller
 
     public function __construct(GetDataDashboardInterface $getDataDashboard)
     {
-        $this->getDataDashboard = $getDataDashboard;    
+        $this->getDataDashboard = $getDataDashboard;
     }
 
     public function index()

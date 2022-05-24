@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AutorController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Front\FrontController;
 
 
 Route::get('/', function () {
@@ -37,4 +38,11 @@ Route::group(['prefix' => 'admin'], function () {
         Route::put('/update-category/{category_id}', [CategoryController::class, 'updateCategory']);
         Route::delete('/delete-category/{category_id}', [CategoryController::class, 'deleteCategory']);
     });
+});
+
+Route::group(['prefix' => 'front'], function () {
+    Route::get('list-all-blogs', [FrontController::class, 'listAllBlogs']);
+    Route::get('list-last-blogs', [FrontController::class, 'listLastBlogs']);
+    Route::get('list-last-categories', [FrontController::class, 'listLastCategories']);
+    Route::get('list-last-autors', [FrontController::class, 'listLastAutors']);
 });

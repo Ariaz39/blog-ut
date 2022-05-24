@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Front\FrontController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AutorController;
 use App\Http\Controllers\Admin\BlogController;
@@ -22,4 +23,5 @@ Route::group(['prefix' => 'admin'], function () {
     });
 });
 
+Route::get('/', [FrontController::class, 'index']);
 
