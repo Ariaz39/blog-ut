@@ -7,11 +7,6 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Front\FrontController;
 
-
-Route::get('/', function () {
-    return view('Admin.login');
-});
-
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
 

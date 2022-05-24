@@ -23,5 +23,8 @@ Route::group(['prefix' => 'admin'], function () {
     });
 });
 
-Route::get('/', [FrontController::class, 'index']);
+Route::get('/login', function () {
+    return view('Admin.login');
+});
 
+Route::get('/', [FrontController::class, 'index']);
