@@ -14,6 +14,11 @@ class FrontController extends Controller
         return view('Front.index');
     }
 
+    public function login()
+    {
+        return view('Front.login');
+    }
+
     public function listAllBlogs()
     {
         return Blog::where('state', 1)

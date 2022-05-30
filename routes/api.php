@@ -1,13 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\AutorController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Admin\UserController;
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
     Route::group(['prefix' => 'autor'], function () {
@@ -35,9 +37,20 @@ Route::group(['prefix' => 'admin'], function () {
     });
 });
 
-Route::group(['prefix' => 'front'], function () {
+Route::group(['prefix' => 'front', 'middleware' => 'auth:sanctum'], function () {
     Route::get('list-all-blogs', [FrontController::class, 'listAllBlogs']);
     Route::get('list-last-blogs', [FrontController::class, 'listLastBlogs']);
     Route::get('list-last-categories', [FrontController::class, 'listLastCategories']);
     Route::get('list-last-autors', [FrontController::class, 'listLastAutors']);
+
+    Route::get('user-profile', [UserController::class, 'userProfile']);
+    Route::get('logout', [UserController::class, 'logout']);
+});
+
+
+Route::post('register', [UserController::class, 'register']);
+Route::post('login', [UserController::class, 'login']);
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
