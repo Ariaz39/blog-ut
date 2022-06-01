@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Admin\UserController;
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth:sanctum'], function () {
+Route::group(['prefix' => 'admin'/*, 'middleware' => 'auth:sanctum'*/], function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
     Route::group(['prefix' => 'autor'], function () {

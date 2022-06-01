@@ -13,7 +13,7 @@ class AutorController extends Controller
 
     public function __construct(AutorRepositoryInterfase $autorRepository)
     {
-       $this->autorRepository = $autorRepository; 
+       $this->autorRepository = $autorRepository;
     }
     public function index()
     {
@@ -23,7 +23,11 @@ class AutorController extends Controller
     public function listAll()
     {
         $data = Autor::where('state', 1)->get();
-        return response($data, 200);
+
+        return response()->json([
+            'data' => $data,
+            'message' => 'Autores listados exitosamente.'
+        ]);
     }
 
     public function createAutor()
@@ -34,41 +38,38 @@ class AutorController extends Controller
     public function storeAutor(Request $request)
     {
         $this->autorRepository->create($request);
-        
-        return response([
-            'success' => true,
+
+        return response()->json([
             'data' => [],
-            'code' => 200,
-            'msg' => 'Autor creado exitosamente'
+            'message' => 'Autor creado exitosamente.'
         ]);
     }
 
     public function showAutor(int $id)
     {
-        return response($this->autorRepository->show($id));
+        return response()->json([
+            'data' => $this->autorRepository->show($id),
+            'message' => 'Autor detallado exitosamente.'
+        ]);
     }
 
     public function updateAutor(Request $request, int $id)
-    {   
+    {
         $this->autorRepository->update($request, $id);
 
-        return response([
-            'success' => true,
+        return response()->json([
             'data' => [],
-            'code' => 200,
-            'msg' => 'Autor actualizado exitosamente'
+            'message' => 'Autor actualizado exitosamente.'
         ]);
     }
 
     public function deleteAutor(int $id)
     {
         $this->autorRepository->delete($id);
-        
-        return response([
-            'success' => true,
+
+        return response()->json([
             'data' => [],
-            'code' => 200,
-            'msg' => 'Autor bloqueado exitosamente'
+            'message' => 'Autor eliminado exitosamente.'
         ]);
     }
 }

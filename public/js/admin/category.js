@@ -22,8 +22,9 @@ function listAll() {
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
+            let data = response.data
             $('table>tbody').html('')
-            $.each(response, function (i, item) {
+            $.each(data, function (i, item) {
                 const row = '<tr>' +
                     '<td>' + item.category_id + '</td>' +
                     '<td>' + item.name + '</td>' +
@@ -51,7 +52,7 @@ function storeCategory() {
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            toastr.success(response.msg);
+            toastr.success(response.message);
             $('.close').click();
             $('#formCreateCategory').trigger("reset");
             $('table>tbody').html('');
@@ -69,8 +70,9 @@ function showCategory(id) {
         url: base_url + "category/show-category/" + id,
         type: "GET",
         success: function (response) {
-            $("input[name='uCategoryId']").val(response.category_id);
-            $("input[name='uNameCategory']").val(response.name);
+            let data = response.data
+            $("input[name='uCategoryId']").val(data.category_id);
+            $("input[name='uNameCategory']").val(data.name);
         },
         error: function (response) {
             var err = response.responseJSON;
@@ -93,7 +95,7 @@ function updateCategory() {
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            toastr.success(response.msg);
+            toastr.success(response.message);
             $('.close').click();
             $('#formCreateCategory').trigger("reset");
             listAll();
@@ -115,8 +117,7 @@ function deleteCategory(id) {
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            // alert(response.msg)
-            toastr.error(response.msg);
+            toastr.error(response.message);
             $('table>tbody').html('');
             listAll();
         },
@@ -128,7 +129,7 @@ function deleteCategory(id) {
 }
 
 toastr.options = {
-    // "closeButton": true,
+    "closeButton": true,
     "newestOnTop": true,
     "progressBar": true,
 

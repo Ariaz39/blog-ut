@@ -16,7 +16,10 @@ class CategoryController extends Controller
     public function listAll()
     {
         $data = Category::where('state', 1)->get();
-        return response($data, 200);
+        return response()->json([
+            'data' => $data,
+            'message' => 'Categorias listadas corretamente.'
+        ]);
     }
 
     public function storeCategory(Request $request)
@@ -26,20 +29,21 @@ class CategoryController extends Controller
         $category['created_at'] = now();
         $category->save();
 
-        return response([
-            'success' => 'true',
+        return response()->json([
             'data' => [],
-            'code' => 200,
-            'msg' => 'Proceso realizado exitosamente.'
+            'message' => 'Proceso realizado exitosamente.'
         ]);
     }
 
     public function showCategory($id)
     {
-        $category = Category::where('state', 1)
+        $data = Category::where('state', 1)
         ->find($id);
 
-        return response($category);
+        return response()->json([
+            'data' => $data,
+            'message' => 'Categoria detallada exitosamente.'
+        ]);
     }
 
     public function updateCategory(Request $request, $id)
@@ -49,11 +53,9 @@ class CategoryController extends Controller
         $update_category['name'] = $request['name'];
         $update_category->update();
 
-        return response([
-            'success' => 'true',
+        return response()->json([
             'data' => [],
-            'code' => 200,
-            'msg' => 'Proceso realizado exitosamente.'
+            'message' => 'Proceso realizado exitosamente.'
         ]);
     }
 
@@ -64,11 +66,9 @@ class CategoryController extends Controller
         $delete_category['state'] = 2;
         $delete_category->update();
 
-        return response([
-            'success' => 'true',
+        return response()->json([
             'data' => [],
-            'code' => 200,
-            'msg' => 'Categoría bloqueada exitosamente.'
+            'message' => 'Categoría bloqueada exitosamente.'
         ]);
     }
 }

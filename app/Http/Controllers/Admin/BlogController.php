@@ -10,38 +10,73 @@ class BlogController extends Controller
 {
     public function index()
     {
+        return view('Admin.blogs');
+    }
+
+    public function ListAll()
+    {
         $data = Blog::where('state', 1)->get()->toArray();
-//        return view('Admin.blogs', compact('data'));
-        return response($data, 200);
+
+        return response()->json([
+            'data' => $data,
+            'message' => 'Blogs listados exitosamente.'
+        ]);
     }
 
-    public function create()
+    public function storeBlog(Request $request)
     {
-        return view('Admin.create_blog');
+        $blog = new Blog();
+        $blog['category_id'] = $request['category_id'];
+        $blog['autor_id'] = $request['autor_id'];
+        $blog['image'] = $request['image'];
+        $blog['title'] = $request['title'];
+        $blog['content'] = $request['content'];
+        $blog['created_at'] = now();
+        $blog->save();
+
+        return response()->json([
+            'data' => [],
+            'message' => 'Blog creado exitosamente.'
+        ]);
     }
 
-    public function store(Request $request)
+    public function showBlog($id)
     {
-        //
+        $data = Blog::where('state', 1)
+            ->find($id);
+
+        return response()->json([
+            'data' => $data,
+            'message' => 'Blog detallado exitosamente.'
+        ]);
     }
 
-    public function show($id)
+    public function updateBlog(Request $request, $id)
     {
-        //
+        $blog_update = Blog::find($id);
+        $blog_update['category_id'] = $request['category_id'];
+        $blog_update['autor_id'] = $request['autor_id'];
+        $blog_update['image'] = $request['image'];
+        $blog_update['title'] = $request['title'];
+        $blog_update['content'] = $request['content'];
+        $blog_update->update();
+
+        return response()->json([
+            'data' => [],
+            'message' => 'Blog actualizado exitosamente.'
+        ]);
     }
 
-    public function edit($id)
+    public function deleteBlog($id)
     {
-        //
-    }
+        $delete_blog = Blog::find($id);
 
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        $delete_blog['state'] = 2;
+        $delete_blog->update();
 
-    public function destroy($id)
-    {
-        //
+        return response()->json([
+            'data' => [],
+            'message' => 'Blog bloqueado exitosamente.'
+        ]);
     }
 }

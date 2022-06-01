@@ -11,6 +11,7 @@ class Blog extends Model
 
     protected $table = 'blg-blogs';
     protected $primaryKey = 'blog_id';
+    public $timestamps = false;
 
     protected $fillable = [
         'category_id',
