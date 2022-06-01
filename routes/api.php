@@ -37,7 +37,7 @@ Route::group(['prefix' => 'admin'/*, 'middleware' => 'auth:sanctum'*/], function
     });
 });
 
-Route::group(['prefix' => 'front', 'middleware' => 'auth:sanctum'], function () {
+Route::group(['prefix' => 'front',/* 'middleware' => 'auth:sanctum'*/], function () {
     Route::get('list-all-blogs', [FrontController::class, 'listAllBlogs']);
     Route::get('list-last-blogs', [FrontController::class, 'listLastBlogs']);
     Route::get('list-last-categories', [FrontController::class, 'listLastCategories']);

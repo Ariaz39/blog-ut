@@ -28,8 +28,8 @@ function listAll() {
                     '<td>' + item.image + '</td>' +
                     '<td>' + item.title + '</td>' +
                     '<td>' + item.content + '</td>' +
-                    '<td>' + item.autor_id + '</td>' +
-                    '<td>' + item.category_id + '</td>' +
+                    '<td>' + item.autor_name + ' ' + item.autor_lastname + '</td>' +
+                    '<td>' + item.category_name + '</td>' +
                     '<td>' + item.created_at + '</td>' +
                     '<td>' +
                     '<a class="btn btn-sm btn-warning" onclick="showBlog(' + item.blog_id + ')" data-toggle="modal" data-target=".modal-update">Editar</a>' +

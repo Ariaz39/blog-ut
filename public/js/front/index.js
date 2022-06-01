@@ -14,7 +14,8 @@ function listAllCategories() {
         type: "GET",
         dataType: 'json',
         success: response => {
-            $.each(response, (i, item) => {
+            let data = response.data
+            $.each(data, (i, item) => {
                 let row = '<li><a href="#">' + item.name + '</a></li>';
                 $('#list_categories, #list_categories_int').append(row);
             });
@@ -29,7 +30,8 @@ function listAllAutors() {
         contentType: 'application/json',
         dataType: 'json',
         success: response => {
-            $.each(response, (i, item) => {
+            let data = response.data
+            $.each(data, (i, item) => {
                 let row = '<li><a href="#">' + item.name + ' ' + item.lastname + '</a></li>';
                 $('#list_autors').append(row);
             });
@@ -44,13 +46,14 @@ function listAllBlogs() {
         "contentType": 'application/json',
         "dataType": 'json',
         "success": response => {
-            $.each(response, (i, item) => {
+            let data = response.data
+            $.each(data, (i, item) => {
                 let row = '<div class="entry-media">' +
                     '<img src="' + item.image + '" alt>' +
-                    '<button>' + item.category_id + '</button>' +
+                    '<button>' + item.category_name+ '</button>' +
                     '</div>' +
                     '<div class="entry-details">' +
-                    '<div class="author">By: <a href="">' + item.autor_id + '</a></div>' +
+                    '<div class="author">Creado por: <a href="">' + item.autor_name + ' ' + item.autor_lastname + '</a></div>' +
                     '<h3><a href=""> ' + item.title + '</a></h3>' +
                     '<div class="entry-meta">' +
                     '<ul>' +
@@ -74,7 +77,8 @@ function listLastBlogs() {
         contentType: 'application/json',
         dataType: 'json',
         success: response => {
-            $.each(response, (i, item) => {
+            let data = response.data
+            $.each(data, (i, item) => {
                 let row = '<div class="post">' +
                     '<div class="img-holder">' +
                     '<img src="assets/images/recent-posts/img-1.jpg" alt>' +
