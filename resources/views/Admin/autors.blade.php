@@ -20,9 +20,9 @@
                         </div>
                         <div class="spur-card-title"> Listado de autores</div>
                         <div class="spur-card-menu">
-                            <a data-toggle="modal" data-target=".modal-create"
+                            <btn data-toggle="modal" data-target=".modal-create"
                                class="btn btn-primary">Agregar
-                                autor</a>
+                                autor</btn>
                         </div>
 
                     </div>
@@ -161,16 +161,16 @@
                             <div class="form-group col-md-6">
                                 <select class="custom-select" id="uSemesterAutor">
                                     <option value="">Seleccione semestre...</option>
-                                    <option value="1">Semestre 1</option>
-                                    <option value="2">Semestre 2</option>
-                                    <option value="3">Semestre 3</option>
-                                    <option value="4">Semestre 4</option>
-                                    <option value="5">Semestre 5</option>
-                                    <option value="6">Semestre 6</option>
-                                    <option value="7">Semestre 7</option>
-                                    <option value="8">Semestre 8</option>
-                                    <option value="9">Semestre 9</option>
-                                    <option value="10">Semestre 10</option>
+                                    <option value="Semestre 1">Semestre 1</option>
+                                    <option value="Semestre 2">Semestre 2</option>
+                                    <option value="Semestre 3">Semestre 3</option>
+                                    <option value="Semestre ">Semestre 4</option>
+                                    <option value="Semestre 5">Semestre 5</option>
+                                    <option value="Semestre 6">Semestre 6</option>
+                                    <option value="Semestre 7">Semestre 7</option>
+                                    <option value="Semestre 8">Semestre 8</option>
+                                    <option value="Semestre 9">Semestre 9</option>
+                                    <option value="Semestre 10">Semestre 10</option>
                                 </select>
                             </div>
                         </div>

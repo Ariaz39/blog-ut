@@ -19,9 +19,9 @@
                         </div>
                         <div class="spur-card-title"> Listado de cateogorias</div>
                         <div class="spur-card-menu">
-                            <a data-toggle="modal" data-target=".modal-create"
+                            <btn data-toggle="modal" data-target=".modal-create"
                                class="btn btn-primary">Agregar
-                                categoria</a>
+                                categoria</btn>
                         </div>
 
                     </div>

@@ -21,20 +21,22 @@ function listAll() {
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
+            console.log(response)
             $('table>tbody').html('')
-            $.each(response, function (i, item) {
+            let data = response.data
+            $.each(data, function (i, item) {
                 const row = '<tr>' +
                     '<td>' + item.blog_id + '</td>' +
-                    '<td>' + item.image + '</td>' +
+                    '<td><img src="' + item.image + '" alt="Imagen"></td>' +
                     '<td>' + item.title + '</td>' +
-                    '<td>' + item.content + '</td>' +
+                    '<td>' + item.content.substring(0, 60) + '</td>' +
                     '<td>' + item.autor_name + ' ' + item.autor_lastname + '</td>' +
                     '<td>' + item.category_name + '</td>' +
                     '<td>' + item.created_at + '</td>' +
                     '<td>' +
-                    '<a class="btn btn-sm btn-warning" onclick="showBlog(' + item.blog_id + ')" data-toggle="modal" data-target=".modal-update">Editar</a>' +
+                    '<btn class="btn btn-sm btn-warning" onclick="showBlog(' + item.blog_id + ')" data-toggle="modal" data-target=".modal-update">Editar</btn>' +
                     '&nbsp;' +
-                    '<a class="btn btn-sm btn-danger" onclick="deleteBlog(' + item.blog_id + ')">Borrar</a>' +
+                    '<btn class="btn btn-sm btn-danger" onclick="deleteBlog(' + item.blog_id + ')">Borrar</btn>' +
                     '</td>' +
                     '</tr>';
                 $('#list-all>tbody').append(row);
@@ -60,7 +62,7 @@ function storeBlog() {
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            toastr.success(response.msg);
+            toastr.success(response.message);
             $('.close').click();
             $('#formCreateBlog').trigger("reset");
             $('table>tbody').html('');
@@ -78,12 +80,15 @@ function showBlog(id) {
         type: "GET",
         url: base_url + "blog/show-blog/" + id,
         success: function (response) {
-            $("#uBlogId").val(response.blog_id);
-            $("#uImageBlog").val(response.name);
-            $("#uTitleBlog").val(response.lastname);
-            $("#uContentBlog").val(response.email);
-            $("#uAutorBlog").val(response.city);
-            $("#uCategoryBlog").val(response.program);
+            let data = response.data
+            $("#uBlogId").val(data.blog_id);
+            $("#uCategoryBlog").val(data.category_id);
+
+            $("#uTitleBlog").val(data.title);
+            //$("#uImageBlog").val(data.image);
+            $("#uContentBlog").val(data.content);
+            $("#uAutorBlog").val(data.autor_id);
+
         },
         error: function (response) {
             var err = response.responseJSON;
@@ -96,12 +101,13 @@ function updateBlog() {
 
     data = {
         'blog_id': $('#uBlogId').val(),
-        'image': $('#imageBlog').val(),
-        'title': $('#titleBlog').val(),
-        'content': $('#contentBlog').val(),
-        'autor': $('#autorBlog').val(),
-        'category': $('#categoryBlog').val(),
+        'image': $('#uImageBlog').val(),
+        'title': $('#uTitleBlog').val(),
+        'content': $('#uContentBlog').val(),
+        'autor_id': $('#uAutorBlog').val(),
+        'category_id': $('#uCategoryBlog').val(),
     }
+    console.log(data)
 
     $.ajax({
         type: "PUT",
@@ -110,7 +116,7 @@ function updateBlog() {
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            toastr.success(response.msg);
+            toastr.success(response.message);
             $('.close').click();
             $('#formCreateCategory').trigger("reset");
             listAll();
@@ -132,7 +138,7 @@ function deleteBlog(id) {
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            toastr.error(response.msg);
+            toastr.error(response.message);
             $('table>tbody').html('');
             listAll();
         },

@@ -18,7 +18,7 @@
                             <i class="fas fa-newspaper"></i>
                         </div>
                         <div class="stats-data">
-                            <div class="stats-number">{{$blogs}}</div>
+                            <div class="stats-number">12</div>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                             <i class="fas fa-users"></i>
                         </div>
                         <div class="stats-data">
-                            <div class="stats-number">{{$autors}}</div>
+                            <div class="stats-number">12</div>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                             <i class="fas fa-clock"></i>
                         </div>
                         <div class="stats-data">
-                            <div class="stats-number">{{$categories}}</div>
+                            <div class="stats-number">12</div>
                         </div>
                     </div>
                 </div>
@@ -66,11 +66,11 @@
                                     <i class="fas fa-plus"></i></a>
                                 <div class="dropdown-menu dropdown-menu-right"
                                      aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="{{route('create-blog')}}">Agregar
+                                    <a class="dropdown-item" href="">Agregar
                                         Blog</a>
-                                    <a class="dropdown-item" href="{{route('create-autor')}}">Agregar
+                                    <a class="dropdown-item" href="">Agregar
                                         Autor</a>
-                                    <a class="dropdown-item" href="{{route('create-category')}}">Agregar
+                                    <a class="dropdown-item" href="">Agregar
                                         Categoria</a>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($data as $key)
+                            {{--@foreach($data as $key)
                                 <tr>
                                     <th scope="row">{{$key['blog_id']}}</th>
                                     <td>{{$key['image']}}</td>
@@ -107,7 +107,7 @@
                                         </form>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @endforeach--}}
 
                             </tbody>
                         </table>

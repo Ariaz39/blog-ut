@@ -5,7 +5,7 @@
     <script
         src="https://cdn.tiny.cloud/1/l7yu4rb40s4hp816fx4stqohhp6fxpn2x64s83wjsjo3t668/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
-    <script>
+    <!--<script>
         tinymce.init({
             selector: 'textarea.blog_content',
             plugins: [
@@ -18,7 +18,7 @@
             toolbar: 'undo redo | code table image | a11ycheck casechange blocks bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify |' +
                 'bullist numlist checklist outdent indent'
         })
-    </script>
+    </script>--!>
 @endsection
 
 @section('css')
@@ -41,13 +41,8 @@
                         </div>
                         <div class="spur-card-title"> Listado de blogs</div>
                         <div class="spur-card-menu">
-                            <a data-toggle="modal" data-target=".modal-create"
-                               class="btn btn-primary">Agregar blog</a>
-                        </div>
-
-                        <div class="spur-card-menu">
-                            <a data-toggle="modal" data-target=".modal-update"
-                               class="btn btn-primary">Actualizar blog</a>
+                            <btn data-toggle="modal" data-target=".modal-create"
+                               class="btn btn-primary">Agregar blog</btn>
                         </div>
 
                     </div>
@@ -89,7 +84,7 @@
                     </button>
                 </div>
                 <div class="card-body ">
-                    <form id="formCreateBlog">
+                    <form id="formCreateBlog" enctype="multipart/form-data">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <input type="text" class="form-control" name="categoryBlog"
@@ -104,7 +99,7 @@
                         </div>
                         <div class="form-row">
                             <div class="custom-file col-md-6">
-                                <input type="file" class="custom-file-input" id="imageBlog">
+                                <input type="file" class="custom-file-input" id="imageBlog" name="imageBlog">
                                 <label class="custom-file-label" for="imageBlog">Seleccionar
                                     imagen</label>
                             </div>
@@ -144,19 +139,19 @@
                         &times;
                     </button>
                 </div>
-                <div class="card-body ">
-                    <form id="formUpdateBlog">
+                <div class="card-body">
+                    <form id="formUpdateBlog" enctype="multipart/form-data">
                         <div class="form-row">
                             <div>
                                 <input type="text" class="d-none" id="uBlogId">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="categoryBlog"
+                                <input type="text" class="form-control" name="uCategoryBlog"
                                        id="uCategoryBlog"
                                        placeholder="Categoria">
                             </div>
                             <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="titleBlog"
+                                <input type="text" class="form-control" name="uTitleBlog"
                                        id="uTitleBlog"
                                        placeholder="Titulo">
                             </div>
@@ -168,10 +163,10 @@
                                     imagen</label>
                             </div>
                             <div class="form-group col-md-6">
-                                <select class="custom-select" name="semesterBlog" id="uAutorBlog">
+                                <select class="custom-select" name="uAutorBlog" id="uAutorBlog">
                                     <option value="">Seleccione autor...</option>
-                                    <option value="Semestre 1">Semestre 1</option>
-                                    <option value="Semestre 2">Semestre 2</option>
+                                    <option value="1">Semestre 1</option>
+                                    <option value="2">Semestre 2</option>
                                 </select>
                             </div>
                         </div>
@@ -190,10 +185,8 @@
     <!-- fin actualizar -->
 @endsection
 
+
 @section('script-footer')
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
-    <script src="{{asset('js/datatable.js')}}"></script>
+    <script src="{{asset('js/admin/blog.js')}}"></script>
 @endsection
 

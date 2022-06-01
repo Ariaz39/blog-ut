@@ -36,6 +36,7 @@ class BlogController extends Controller
     public function storeBlog(Request $request)
     {
         $blog = new Blog();
+        dd($request->hasFile('imageBlog'));
         $blog['category_id'] = $request['category_id'];
         $blog['autor_id'] = $request['autor_id'];
         $blog['image'] = $request['image'];

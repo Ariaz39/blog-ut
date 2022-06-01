@@ -22,7 +22,8 @@ function listAll() {
         dataType: 'json',
         success: function (response) {
             $('table>tbody').html('')
-            $.each(response, function (i, item) {
+            let data = response.data
+            $.each(data, function (i, item) {
                 const row = '<tr>' +
                     '<td>' + item.autor_id + '</td>' +
                     '<td>' + item.name + '</td>' +
@@ -61,7 +62,7 @@ function storeAutor() {
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            toastr.success(response.msg);
+            toastr.success(response.message);
             $('.close').click();
             $('#formCreateAutor').trigger("reset");
             $('table>tbody').html('');
@@ -79,13 +80,14 @@ function showAutor(id) {
         type: "GET",
         url: base_url + "autor/show-autor/" + id,
         success: function (response) {
-            $("#uAutorId").val(response.autor_id);
-            $("#uNameAutor").val(response.name);
-            $("#uLastnameAutor").val(response.lastname);
-            $("#uEmailAutor").val(response.email);
-            $("#uCityAutor").val(response.city);
-            $("#uProgramAutor").val(response.program);
-            $("#uSemesterAutor").val(response.semester);
+            let data = response.data
+            $("#uAutorId").val(data.autor_id);
+            $("#uNameAutor").val(data.name);
+            $("#uLastnameAutor").val(data.lastname);
+            $("#uEmailAutor").val(data.email);
+            $("#uCityAutor").val(data.city);
+            $("#uProgramAutor").val(data.program);
+            $("#uSemesterAutor").val(data.semester);
         },
         error: function (response) {
             var err = response.responseJSON;
@@ -113,7 +115,8 @@ function updateAutor() {
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            toastr.success(response.msg);
+            console.log(response)
+            toastr.success(response.message);
             $('.close').click();
             $('#formCreateCategory').trigger("reset");
             listAll();
@@ -135,7 +138,7 @@ function deleteAutor(id) {
         contentType: 'application/json',
         dataType: 'json',
         success: function (response) {
-            toastr.error(response.msg);
+            toastr.error(response.message);
             $('table>tbody').html('');
             listAll();
         },
